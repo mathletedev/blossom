@@ -1,9 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://c54gv7jl7i4qa"]
+[gd_scene load_steps=10 format=3 uid="uid://c54gv7jl7i4qa"]
 
-[ext_resource type="Texture2D" uid="uid://bh36p7ny5qxtv" path="res://icon.svg" id="1_s2tl5"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ub333"]
+[ext_resource type="Texture2D" uid="uid://bkan6tacso74o" path="res://assets/player.png" id="2_th32t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y22f3"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gr8qw"]
+radius = 1.16667
+height = 5.33333
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imirt"]
+atlas = ExtResource("2_th32t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygvgs"]
+atlas = ExtResource("2_th32t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbgi8"]
+atlas = ExtResource("2_th32t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v2ny"]
+atlas = ExtResource("2_th32t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpk10"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imirt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygvgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbgi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v2ny")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="TileSet" id="TileSet_jnmwh"]
 
 [node name="Main" type="Node"]
 
@@ -12,7 +52,18 @@ script = ExtResource("1_ub333")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(6, 6)
-shape = SubResource("CircleShape2D_y22f3")
+shape = SubResource("CapsuleShape2D_gr8qw")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("1_s2tl5")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cpk10")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0184116
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_jnmwh")
+format = 2
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
