@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c54gv7jl7i4qa"]
+[gd_scene load_steps=14 format=3 uid="uid://c54gv7jl7i4qa"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ub333"]
 [ext_resource type="Texture2D" uid="uid://bkan6tacso74o" path="res://assets/player.png" id="2_th32t"]
@@ -23,6 +23,22 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_th32t")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5dmo"]
+atlas = ExtResource("2_th32t")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb7e6"]
+atlas = ExtResource("2_th32t")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifwig"]
+atlas = ExtResource("2_th32t")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgjlq"]
+atlas = ExtResource("2_th32t")
+region = Rect2(224, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cpk10"]
 animations = [{
 "frames": [{
@@ -41,6 +57,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5dmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb7e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifwig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgjlq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
 }]
 
 [sub_resource type="TileSet" id="TileSet_jnmwh"]
@@ -57,9 +90,9 @@ shape = SubResource("CapsuleShape2D_gr8qw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cpk10")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.0184116
+frame_progress = 0.450437
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_jnmwh")
